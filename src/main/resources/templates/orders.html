@@ -38,7 +38,7 @@
     <script>
 		
 		async function createOrder() {
-            const response = await fetch("http://localhost:8080/createOrder", {
+            const response = await fetch("/createOrder", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -57,14 +57,16 @@
             const order = await createOrder();
 
             var options = {
-                "key": "######",//your razorpay key id
+                "key": "rzp_test_RtVxX2GgS4LcYd",//your razorpay key id
                 "amount": order.amount,
                 "currency": "INR",
-                "name": "",//Name of your Razorpay account
+                "name": "Test Razorpay",//Name of your Razorpay account
                 "description": "order for Test",
                 "order_id": order.razorpayOrderId,
-                "reciept": order.email,
+                "receipt": order.email,
+
                 "callback_url": "http://localhost:8080/paymentCallback",
+
                 "prefill": {
                     "name": order.name,
                     "email": order.email
